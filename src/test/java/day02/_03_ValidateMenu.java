@@ -18,7 +18,7 @@ public class _03_ValidateMenu extends DriverClass {
      * Validate that you see all menu options
      * */
 
-    @Test
+    @Test(groups = "SmokeTest")
     void validate(){
         List<WebElement> menuList = driver.findElements(By.xpath("//ul[@class=\"nav navbar-nav\"]/li"));
         List<String> expectedMenuList = new ArrayList<>(List.of("Desktops", "Laptops & Notebooks", "Components", "Tablets", "Software", "Phones & PDAs", "Cameras", "MP3 Players"));

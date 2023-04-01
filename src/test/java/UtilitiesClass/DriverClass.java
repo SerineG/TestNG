@@ -18,11 +18,7 @@ public class DriverClass {
 
     @BeforeClass(alwaysRun = true)
     public void startingSettings() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(options);
-
+        driver = new ChromeDriver();
         wait = new WebDriverWait(driver,Duration.ofSeconds(30));
         driver.manage().window().maximize();
 
@@ -42,15 +38,17 @@ public class DriverClass {
         loginButton.click();
     }
 
-    @AfterClass(alwaysRun = true)
-    public void finishSettings(){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driver.quit();
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void finishSettings(){
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        driver.quit();
+//    }
+
+
 
 
 }
