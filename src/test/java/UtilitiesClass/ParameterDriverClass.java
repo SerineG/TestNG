@@ -1,28 +1,38 @@
 package UtilitiesClass;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
-public class DriverClass {
-    public static WebDriver driver;
+public class ParameterDriverClass {
+
+    public WebDriver driver;
     public static WebDriverWait wait;
 
     @BeforeClass(alwaysRun = true)
-    public void startingSettings() {
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-        driver.manage().window().maximize();
+    @Parameters(value = "browser")
+    public void startingSettings(String browserName){
+        if (browserName.equalsIgnoreCase("chrome")){
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--remote-allow-origins=*");
+            driver = new ChromeDriver(options);
+        }else if(browserName.equalsIgnoreCase("firefox")){
+            driver = new FirefoxDriver();
+        }
 
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        driver.manage().window().maximize();
+
         login();
     }
 
@@ -47,8 +57,4 @@ public class DriverClass {
         }
         driver.quit();
     }
-
-
-
-
 }
