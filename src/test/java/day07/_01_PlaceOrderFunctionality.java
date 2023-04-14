@@ -1,5 +1,6 @@
 package day07;
 
+import UtilitiesClass.DriverClass;
 import UtilitiesClass.ParameterDriverClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class _01_PlaceOrderFunctionality extends ParameterDriverClass {
+public class _01_PlaceOrderFunctionality extends DriverClass {
     /**
      * Go to "https://opencart.abstracta.us/index.php?route=account/login"
      * Log in
